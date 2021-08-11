@@ -10,10 +10,17 @@ const isTriangle = (a,b,c) => {
 }
 const triangle = (a,b,c) => {
     if(isTriangle(a,b,c)){
-            console.log(chalk.green("Triangle is formable"));
-        }else{
-            console.log(chalk.red("Triangle is not formable"));
+        console.log(chalk.green("Triangle is formable"));
+        if(a==c && c==b){
+            console.log(chalk.cyan("equilateral triangle"));
         }
+        else if(a==c || a==b || b==c){
+            console.log(chalk.blue("an isosceles triangle"));
+        }
+    }else{
+        console.log(chalk.bgRed("Triangle is not formable"));
+    }
 }
-module.exports={isTriangle, triangle,};
+
+module.exports={isTriangle, triangle};
 
