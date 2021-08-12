@@ -5,7 +5,6 @@ const http=require('http');
 const server = http.createServer((req, resp)=>{
     const url=req.url;
     const method=req.method;
-    let color_td;
     console.log("Ivyko ivykis");
     console.log(url);
     console.log(method);
@@ -25,7 +24,7 @@ const server = http.createServer((req, resp)=>{
     for (let i = 1; i <= 10; i++) {
         resp.write("<tr>");
         for (var j = 1; j <= 10; j++) {
-            if(i == 1 || j == 1) {
+            if(i === 1 || j === 1 || i === j) {
                 color_td = "class='red'";
             }
             else {
