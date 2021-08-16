@@ -18,7 +18,7 @@ const server=http.createServer((req, resp)=>{
             let bs=Buffer.concat(body).toString();//getting full body data/check node.js docs
             console.log("Recieved full information: "+bs);
             let x=bs.split('=')[1];
-                x = x.replace(/[^a-zA-Z ]/g,' ');
+                x = x.replace(/\+/g,' ');
                 fs.appendFileSync('text.txt', x+"\n");
                 resp.setHeader('Content-Type', 'text/html');
                 resp.write('<html>');
