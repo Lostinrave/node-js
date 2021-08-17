@@ -10,7 +10,7 @@ const server=http.createServer((req, res)=>{
         });
         req.on('end', ()=>{
             const d=Buffer.concat(body).toString();
-            console.log(d);
+            // console.log(d);
             const v=d.split('&');
             const x=parseInt(v[0].split('=')[1]);
             const y=parseInt(v[1].split('=')[1]);
