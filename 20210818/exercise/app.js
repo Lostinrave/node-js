@@ -3,6 +3,7 @@ const fs=require('fs');     //Prisidedame FS moduli
 const path=require('path');
 const olympic = require('./olympic');
 
+
 //Sukuriam serveri ir paduodame f-ją kuri aptarnaus vartotojų užklausas
 const server=http.createServer((req, res)=>{
     const url=req.url;         //  /informacija.txt
