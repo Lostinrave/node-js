@@ -20,8 +20,8 @@ const server=http.createServer((req, res)=>{
 
      // /forecast?place=Kaunas
         let rates = getData[1].split('&');
-        let from = rates[0].split('=')[1];
-        let to = rates[1].split('=')[1];
+        let from = rates[0].split('=')[1].toUpperCase();
+        let to = rates[1].split('=')[1].toUpperCase();
 
         converter(from,to,(data)=>{
             res.setHeader('Content-Type', 'text/html');
