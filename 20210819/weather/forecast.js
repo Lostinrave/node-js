@@ -8,7 +8,7 @@ const forecast=(place, callback)=>{
     request({url:url}, (error, response)=>{
         const data=response.body;
         const weather=JSON.parse(data);
-        console.log(weather.place.name);
+        // console.log(weather.place.name);
         let fc=[];
         weather.forecastTimestamps.forEach((d)=>{
             fc.push({
