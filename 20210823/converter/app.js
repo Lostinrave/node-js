@@ -5,3 +5,4 @@ converter('EUR','USD',(data)=>{
         console.log("Day: "+d.date+"\t Rates:"+d.value);
     });
 });
+
