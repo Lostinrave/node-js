@@ -20,8 +20,11 @@ const converter=(from, to, callback)=>{
         // console.log(crn.rates);
         const crn=JSON.parse(response.body); // sutrumpinta kodo versija, sumažinam vienu kintamuoju
         const rates=[]; // masyvas į kurį dėsime objektus
-
+        // let i=0; imant 10 dienų
         for(const [date, value] of Object.entries(crn.rates)){ // Object.entries paverčia objektą į masyvą su keys ir values // for of ciklas yra praktiškai for each
+            // for(const [date, value] of (Object.entries(crn.rates)).reverse()){} imant 10 dienų
+            // i++; imant 10 imant 10 dienų
+            // if(i>10) break; imant 10 dienų
             rates.push({
                 date: date,
                 value: value[to] // paimame atributą kurį esame apsirašę kaip kintamąjį, kurį įrašome kviesdami funkciją pvz 'USD', 'RUB', ir t.t
@@ -29,6 +32,7 @@ const converter=(from, to, callback)=>{
 
         }
         callback(rates); // Iškviečiame funkciją kuri buvo paduota kaip atributas
+        // callback(rates.reverse); imant 10 dienų 
     });
 };
 module.exports=converter;
