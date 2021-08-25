@@ -5,7 +5,7 @@ const path=require('path'); //Prisidedam path moduli
 
 function generatePlacesSelect(places){
     // Generuojame select ir ji patalpinsime index.html
-    let s='<select class="form-control" name="place">';
+    let s='<select class="form-control select2" name="place">';
     places.forEach((d)=>{
         s+="<option value='"+d.code+"'>"+d.name+"</option>";
     })
