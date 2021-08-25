@@ -39,5 +39,26 @@ const converter=(from, to, callback)=>{
         }
     });
 };
-module.exports=converter;
+
+const currenciesList=(callback)=>{
+    //API url'as
+    const url='https://api.frankfurter.app/currencies';
+    request({url:url},(error,response)=>{
+        const data=response.body;
+        const list=JSON.parse(data);
+        const l=[];
+        for(const [code, name] of Object.entries(list)){ 
+            l.push({
+                code: code,
+                name: name
+            });
+        }
+        console.log(l);
+        callback(l);
+    });
+
+};
+
+
+module.exports={converter,currenciesList};
 
