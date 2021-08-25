@@ -17,8 +17,26 @@ const forecast=(place, callback)=>{
             });
 
         });
-        callback(fc);
+        callback(fc, weather.place.name);
     });
 };
+// Funkcija kuri grazins is API per callback funkcija grazins vietoviu sarasa
+const places=(callback)=>{
+    //API url'as
+    const url='https://api.meteo.lt/v1/places';
+    request({url:url},(error,response)=>{
+        const data=response.body;
+        const places=JSON.parse(data);
+        const p=[];
+        places.forEach((d)=>{
+            p.push({
+                code:d.code,
+                name:d.name
+            });
+        });
+        callback(p);
+    });
 
-module.exports=forecast;
+};
+
+module.exports={forecast, places};
