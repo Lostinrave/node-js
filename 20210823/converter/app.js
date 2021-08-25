@@ -19,9 +19,9 @@ const server=http.createServer((req, res)=>{
     if(getData[0]==='/convert'){
 
      // /forecast?place=Kaunas
-        let rates = getData[1].split('&');
-        let from = rates[0].split('=')[1].toUpperCase();
-        let to = rates[1].split('=')[1].toUpperCase();
+        let rates = getData[1].split('&'),
+            from = rates[0].split('=')[1].toUpperCase(),
+            to = rates[1].split('=')[1].toUpperCase();
 
         converter(from,to,(data)=>{
             res.setHeader('Content-Type', 'text/html');
