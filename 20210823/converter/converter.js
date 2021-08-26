@@ -44,10 +44,11 @@ const currenciesList=(callback)=>{
     //API url'as
     const url='https://api.frankfurter.app/currencies';
     request({url:url},(error,response)=>{
-        const data=response.body;
-        const list=JSON.parse(data);
+        // const data=response.body; // mazinam eiluciu ir kintamuju kieki
+        const list=JSON.parse(response.body);
         const l=[];
         for(const [code, name] of Object.entries(list)){ 
+            // tas pats kaip for each - kuris naudojamas masyvams, for of naudojamas objektams
             l.push({
                 code: code,
                 name: name
@@ -62,3 +63,4 @@ const currenciesList=(callback)=>{
 
 module.exports={converter,currenciesList};
 
+// currenciesList((ca)=>{}); // Tikrinimuisi funkcijos ja reikia kviesti taip

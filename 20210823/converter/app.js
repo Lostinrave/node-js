@@ -4,9 +4,10 @@ const http=require('http'); //Prisidedame HTTP moduli
 const fs=require('fs');     //Prisidedame FS moduli
 const path=require('path'); //Prisidedam path moduli
 
-function generateCurrenciesSelect(currencies){
+//Pridedam funkcijai kintamaji name, kad galetume pakeisti kintamaji kvieciant funkcija irasyti string koki norime gauti
+function generateCurrenciesSelect(currencies, name){
     // Generuojame select ir ji patalpinsime index.html
-    let s='<select class="form-control" name="from">';
+    let s='<select class="form-control" name="'+name+'">';
     currencies.forEach((d)=>{
         s+="<option value='"+d.code+"'>"+d.name+"</option>";
     })
@@ -14,6 +15,14 @@ function generateCurrenciesSelect(currencies){
     return s;
 }
 
+function generateTable(data){
+    let s='<table class="table">';
+    data.forEach((d)=>{
+        s+='<tr> <td>'+d.date+'</td> <td>'+d.value+'</td> </tr>'
+    });
+    s+='</table>';
+    return s;
+}
 
 const server=http.createServer((req, res)=>{
     let url=req.url;
@@ -21,8 +30,10 @@ const server=http.createServer((req, res)=>{
     if(url==='/'){
         currenciesList((currencies)=>{
             let stream=fs.readFileSync('./template/index.html', 'utf-8');
-            stream=stream.replace('{{fromCr}}', generateCurrenciesSelect(currencies));
-            stream=stream.replace('{{toCr}}', generateCurrenciesSelect(currencies));
+            stream=stream.replace('{{fromCr}}', generateCurrenciesSelect(currencies,'from'));
+            // Irasome kabutese vietoje kintamojo stringa
+            stream=stream.replace('{{toCr}}', generateCurrenciesSelect(currencies,'to'));
+                        // Irasome kabutese vietoje kintamojo stringa
             res.setHeader('Content-Type','text/html');
             res.write(stream);
             return res.end();
@@ -41,18 +52,12 @@ const server=http.createServer((req, res)=>{
         currenciesList((currencies)=>{
             converter(from,to,(data)=>{
                 res.setHeader('Content-Type', 'text/html');
-                let s='<table class="table">';
-                data.forEach((d)=>{
-                    s+='<tr> <td>'+d.date+'</td> <td>'+d.value+'</td> </tr>'
-                });
-                s+='</table>';
                 let stream=fs.readFileSync('./template/convert.html', 'utf-8');
-                stream=stream.replace('{{fromCr}}', generateCurrenciesSelect(currencies));
-                stream=stream.replace('{{toCr}}', generateCurrenciesSelect(currencies));
-
-                stream=stream.replace('{{from}}', from);
+                stream=stream.replace('{{fromCr}}', generateCurrenciesSelect(currencies,'from'));
+                stream=stream.replace('{{toCr}}', generateCurrenciesSelect(currencies,'to'));
+                stream=stream.replace('{{rates}}', generateTable(data));
+                stream=stream.replace('{{from}}', from );
                 stream=stream.replace('{{to}}', to);
-                stream=stream.replace('{{rates}}', s);
                 res.write(stream);
                 res.end();
             });
