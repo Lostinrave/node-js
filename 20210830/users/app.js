@@ -3,7 +3,7 @@ const requestIp = require('request-ip');
 
 const app=express(); // sukuriam objekta
 
-app.use(express.urlencoded({extended:false})); // body-parser
+app.use(express.urlencoded({extended:false})); // body-parser issplitina inputo stringa i objekta, kad galetume pasiimti inputo reiksme
 
 app.use((req,res,next)=>{
     console.log("New user: "+requestIp.getClientIp(req)+"\n"+"Url: "+req.url);
@@ -17,13 +17,17 @@ app.get('/users_list', (req,res,next)=>{
 
 app.post('/add_user',(req,res,next)=>{
     // console.log(req.body);
-    res.send("<h1>Add user</h1>"+"User name: "+req.body.name+"</br>"+"User name: "+req.body.surname);
+    res.send("<h1>Add user</h1>"+"User name: "+req.body.name+"</br>"+"User surname: "+req.body.surname); // pasiimam inputo reiksme kuri nurodyta inputo name=""
     
 });
 
-// app.use('/',(req,res,next)=>{  //app.use - GET, POST paima abu metodus
-//     res.send("<h1>Main page</h1>");
-// });
+app.get('/add_user', (req,res,next)=>{
+    res.redirect('/users_list');
+});
+
+app.use('/',(req,res,next)=>{  //app.use - GET, POST paima abu metodus
+    res.send("<h1>Main page</h1>");
+});
 
 app.listen(3000);
 
