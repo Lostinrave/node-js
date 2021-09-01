@@ -9,7 +9,13 @@ router.get('/', (req,res,next)=>{
 
 router.post('/add',(req,res,next)=>{
     // console.log(req.body);
-    res.send("<h1>Add user</h1>"+"User name: "+req.body.name+"</br>"+"User surname: "+req.body.surname); // pasiimam inputo reiksme kuri nurodyta inputo name=""
+    //paimamas sablonas ir sugeneruojamas html
+    res.render("result",{
+        name:nreq.body.name,
+        surname:req.body.surname
+    });//paduodam result.hbs be galunes
+
+    // res.send("<h1>Add user</h1>"+"User name: "+req.body.name+"</br>"+"User surname: "+req.body.surname); // pasiimam inputo reiksme kuri nurodyta inputo name=""
     
 });
 
