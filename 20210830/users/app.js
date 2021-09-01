@@ -1,14 +1,27 @@
 const express=require('express'); // Prisidedam biblioteka
+const path = require('path');
+const hbs=require('hbs');
+//routes
 const systemRouter=require('./routes/system');
 const pageRouter=require('./routes/page');
 const userRouter=require('./routes/user');
-const path = require('path');
-const app=express(); // sukuriam objekta
-//nustatymai turi buti pries middleware bet po objekto
-app.set('view engine','hbs');
+//keliai
+//konstanta, kelias iki sablonu
+const viewsPath=path.join(__dirname,'views','templates');
+const partialsPath=path.join(__dirname,'views','partials');
+const publicPath=path.join(__dirname,'public');
 
-app.use(express.urlencoded({extended:false})); // body-parser, issplitina inputo stringa i objekta, kad galetume pasiimti inputo reiksme
-app.use(express.static(path.join(__dirname, 'public'))); //registruojam express.static middleware kuris pagal uzklausas atsius failus is katalogo kuri mes nurodeme kaip kintamaji
+// sukuriam objekta
+const app=express(); 
+//nustatymai turi buti pries middleware bet po objekto
+
+app.set('view engine','hbs');
+app.set('views',viewsPath);
+hbs.registerPartials(partialsPath);
+ // body-parser, issplitina inputo stringa i objekta, kad galetume pasiimti inputo reiksme
+app.use(express.urlencoded({extended:false}));
+//registruojam express.static middleware kuris pagal uzklausas atsius failus is katalogo kuri mes nurodeme kaip kintamaji
+app.use(express.static(path.join(publicPath))); 
 app.use(systemRouter);
 app.use('/user',userRouter);
 app.use(pageRouter);

@@ -1,8 +1,9 @@
 const express=require('express'); // Prisidedam biblioteka
-const app=express(); // sukuriam objekta
 const pageRouter=require('./routes/page');
 const logRouter=require('./routes/log');
 const path=require('path');
+const app=express(); // sukuriam objekta
+app.set('view engine','hbs');
 
 
 app.use(express.urlencoded({extended:false}));
