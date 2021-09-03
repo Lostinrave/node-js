@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{>head}}
+    <body id="page-top">
+        {{>navbar}}
+        <!-- Masthead-->
+<section class="page-section mt-5">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+            feedback
+        </h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <i class="fas fa-star"></i>
+            <div class="divider-custom-line"></div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            {{#each feedback}}
+            <div class="card mb-2">
+                <div class="card-body mb-4">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">{{text}}</p>
+                </div>
+            </div>
+            {{~/each}}
+            <form method="POST" action="/reviews">
+                <!-- Name input-->
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                    <label for="name">Your name</label>
+                </div>
+                <!-- Message input-->
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" name="text" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                    <label for="message">Review</label>
+                </div>
+                
+                <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+        {{>footer}}
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+        </div>
+
+
+    </body>
+</html>
+
+

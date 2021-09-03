@@ -25,14 +25,10 @@ hbs.registerPartials(partialsPath);
  // body-parser, issplitina inputo stringa i objekta, kad galetume pasiimti inputo reiksme
 app.use(express.urlencoded({extended:false}));
 //registruojam express.static middleware kuris pagal uzklausas atsius failus is katalogo kuri mes nurodeme kaip kintamaji
-app.use(express.static(path.join(publicPath))); 
+app.use(express.static(publicPath)); 
 app.use(systemRouter);
 app.use('/user',userRouter);
 app.use(pageRouter);
-
-
-
-
 
 
 app.listen(3000);
