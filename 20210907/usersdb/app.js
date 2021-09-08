@@ -1,6 +1,10 @@
 // const mongodb=require('mongodb');
 // const MongoClient=mongodb.MongoClient;
 // const ObjectId=mongodb.ObjectId;
+
+//terminalo kelias
+//nueinam i mongodb bin folderi ir ivykdom terminale .\mongod.exe --dbpath='C:\mongo\data (pasiimdami data folderi)
+
 const {MongoClient,ObjectId}=require('mongodb');
 
 //Duomenu bazes vieta (serveris), siuo atveju localhost ip adresas + portas
