@@ -27,7 +27,7 @@ app.use(pageRoute);
 MongoClient.connect(connectionURL).then((client)=>{
     const db=client.db(dbName);
     global.db=db;
-    console.log("Prisijungėme prie duomenų bazės");
+    console.log("Connected to database");
 
 });
 app.listen(3000);
