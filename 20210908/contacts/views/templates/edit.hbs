@@ -9,26 +9,27 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Pridėti naują kontaktą</h5>
-                    <form method="POST" action="/new">
+                    <form method="POST" action="/edit?id={{contact._id}}">
                         <div class="mb-3">
                             <label class="form-label">Vardas</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" value="{{contact.name}}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Pavardė</label>
-                            <input type="text" name="surname" class="form-control">
+                            <input type="text" name="surname" class="form-control" value="{{contact.surname}}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Tel.</label>
-                            <input type="text" name="phone" class="form-control">
+                            <input type="text" name="phone" class="form-control" value="{{contact.phone}}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">El. paštas</label>
-                            <input type="text" name="email" class="form-control">
+                            <input type="text" name="email" class="form-control" value="{{contact.email}}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Tipas</label>
                             <select class="form-control" name="type">
+                                <option value="{{contact.type}}">{{contact.type}}</option>
                                 {{#each types}}
                                     <option value="{{name}}">{{name}}</option>
                                 {{~/each}}
@@ -36,7 +37,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success" type="submit">Pridėti</button>
+                            <button class="btn btn-success" type="submit">Išsaugoti</button>
                         </div>
                     </form>
                 </div>

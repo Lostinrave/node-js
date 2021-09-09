@@ -16,6 +16,7 @@
                             <th>Tel.</th>
                             <th>El. paštas</th>
                             <th>Tipas</th>
+                            <th></th>
                         </tr>
                         {{#each contacts}}
                         <tr>
@@ -24,14 +25,23 @@
                             <td>{{phone}}</td>
                             <td>{{email}}</td>
                             <td>{{type}}</td>
+                            
+                            <td>
+                                <a href="/edit?id={{_id}}" class="btn btn-success">Redaguoti</a>
+                                <a href="/delete?id={{_id}}" class="btn btn-danger">Ištrinti</a>
+                                
+                            </td>
                         </tr>
                         {{~/each}}
                        
                     </table>
+                    Galimi tipai: <br>
+                    {{#each types}} {{name}}, {{~/each}}
                 </div>
             </div>
         </div>
     </div>
+
     </main>
      {{>foot}}   
   </body>

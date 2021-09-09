@@ -35,6 +35,11 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{priority}}
                         </td>
+                        <td>
+                            <a href="/edit?id={{_id}}"><button class="text-gray-900 bg-green-300 font-bold py-1 px-2 border border-gray-700 rounded">Edit</button></a>
+                            <a href="/delete?id={{_id}}"><button class="text-gray-900 bg-red-300 font-bold py-1 px-2 border border-gray-700 rounded">Delete</button></a>
+                            
+                        </td>
                         </tr>
                         {{~/each}}
                         <!-- More people... -->

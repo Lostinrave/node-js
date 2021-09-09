@@ -5,13 +5,13 @@
         {{>nav}}
         <div class="flex justify-center h-screen">
             <div class="m-auto">
-                <form action="/new" method="POST" class="w-full max-w-lg">
+                <form action="/edit?id={{contact._id}}" method="POST" class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-5 mb-3">
                         <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                                 Task
                             </label>
-                            <input name="task" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Task"required>
+                            <input name="task" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Task"value="{{task.task}}"required>
                         </div>
                         <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
@@ -19,6 +19,7 @@
                             </label>
                             <div class="relative">
                                 <select name="status" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                                <option value="{{task.status}}">{{task.status}}</option>
                                 {{#each status}}
                                 <option value="{{name}}">{{name}}</option>
                                 {{~/each}}

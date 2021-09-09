@@ -24,7 +24,7 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicPath));
 app.use(express.urlencoded({extended:false}));
 app.use(pageRoute);
-MongoClient.connect(connectionURL).then((client)=>{
+MongoClient.connect(connectionURL).then((client) =>{
     const db=client.db(dbName);
     global.db=db;
     console.log("Connected to database");
