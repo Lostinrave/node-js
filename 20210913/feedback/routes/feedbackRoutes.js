@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const Feedback=require('./../model/feedback')
+const Feedback=require('../model/feedback');
 
 router.get('/feedback', (req, res, next)=>{
     Feedback.find({}).then((feedbacks) =>{
