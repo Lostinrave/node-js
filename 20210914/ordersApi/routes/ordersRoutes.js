@@ -36,7 +36,8 @@ router.get('/orders/service/:id', (req,res, next)=>{
     Orders.find({
         service_id:id
     }).then((orders) =>{
-        if (!orders){
+        console.log(orders);
+        if (orders.length==0){
             return res.status(404).send();
         }
         res.send(orders);
