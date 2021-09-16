@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const Feedback=require('../model/feedback');
+const auth=require('./../middleware/auth');
 
 router.get('/feedback', (req, res, next)=>{
     Feedback.find({}).then((feedbacks) =>{
@@ -25,7 +26,7 @@ router.get('/feedback/:id', (req,res, next)=>{
 });
 
 
-router.post('/feedback', (req, res, next)=>{
+router.post('/feedback',auth, (req, res, next)=>{
     const feedback=new Feedback(req.body);
     feedback.save().then(()=>{
         res.status(201).send(feedback);
@@ -34,7 +35,7 @@ router.post('/feedback', (req, res, next)=>{
     });
 })
 
-router.patch('/feedback/:id', async (req, res, next)=>{
+router.patch('/feedback/:id',auth, async (req, res, next)=>{
     try{
         //Pasiimame sena feedback is duomenu bazes
         const feedback=await Feedback.findById(req.params.id);
@@ -63,7 +64,7 @@ router.patch('/feedback/:id', async (req, res, next)=>{
 
 });
 
-router.delete('/feedback/:id', async (req, res, next)=>{
+router.delete('/feedback/:id',auth, async (req, res, next)=>{
     try{
        const feedback=await Feedback.findByIdAndDelete(req.params.id);
        if(!feedback){
